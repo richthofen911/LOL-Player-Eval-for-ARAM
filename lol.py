@@ -23,11 +23,19 @@ url_playerStat_prefix = "https://na.api.pvp.net/api/lol/na/v1.3/game/by-summoner
 url_playerStat_suffix = "/recent?api_key=b7a22f82-b9d6-491a-9f10-b4446e228fa4"
 url_championInfo_prefix = "https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/"
 url_championInfo_suffix = "?api_key=b7a22f82-b9d6-491a-9f10-b4446e228fa4"
+url_sumonnerId_prefix = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/"
+url_summonerId_suffix = "?api_key=b7a22f82-b9d6-491a-9f10-b4446e228fa4"
 
 
 mySummonerId = 43310476
 
 TS =  [12, 32, 432, 53, 201, 36, 89, 117, 54, 58, 267, 33, 111, 113, 27, 98, 72, 16, 44, 412, 48, 77, 106, 154]
+
+def getSummonerId(summonerName):
+    url_summonerId = url_sumonnerId_prefix + summonerName + url_sumonnerId_suffix
+    response = hit_url_simple(url_summonerId)
+    info = json.loads(response)
+    return info['id']
 
 def getChampionList():
     response = hit_url_simple(url_championList)
